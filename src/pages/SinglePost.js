@@ -96,7 +96,7 @@ function SinglePost(props) {
                       <Button
                         type='submit'
                         className='ui button teal'
-                        disabled={comment.trim() == ''}
+                        disabled={comment.trim() === ''}
                         onClick={submitComment}
                       >
                         Submit
