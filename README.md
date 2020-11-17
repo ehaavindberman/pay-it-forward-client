@@ -1,3 +1,10 @@
+# Pay it forward
+
+Client side of a social network for sharing recommendations built with MERNG (MongoDB, Express, React, Node, Graphql) stack. Big thank you to Classed and freeCodeCamp for the great initial tutorial I followed [here](https://www.youtube.com/watch?v=n1mdAPFq2Os).
+
+To get set up, clone this repo and pay-it-forward-server, make sure you have mongodb setup and run `node index` for the server and `npm start` for the client then localhost:3000 should show the project and localhost:5000 should be your graphql playground. See below for more info in getting started with react.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
