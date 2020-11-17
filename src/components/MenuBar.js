@@ -4,37 +4,52 @@ import { Link } from 'react-router-dom'
 
 import { AuthContext } from '../context/auth'
 
-function MenuBar() {
+function MenuBar(props) {
   const { user, logout } = useContext(AuthContext);
-  const pathname = window.location.pathname;
-  const path = pathname === '/' ? 'home' : pathname.substr(1);
-  const [activeItem, setActiveItem] = useState(path);
 
+  const pathname = window.location.pathname;
+  const path = pathname === '/' ? 'main' : pathname.substr(1);
+  const [activeItem, setActiveItem] = useState(path);
+  
+  const handleLogOut = (e) => {
+    setActiveItem('main');
+    logout();
+  }
   const handleItemClick = (e, { name }) => setActiveItem(name);
 
   const menuBar = user ? (
-    <Menu pointing secondary size="massive" color="teal">
+    <Menu pointing secondary size='massive' color='teal'>
       <Menu.Item
-        name={user.username}
-        active
+        name='main'
+        active={activeItem === 'main' || activeItem === '/'}
+        onClick={handleItemClick}
         as={Link}
-        to="/"
+        to='/'
       />
       <Menu.Menu position='right'>
         <Menu.Item
           name='logout'
-          onClick={logout}
+          as={Link}
+          to='/'
+          onClick={handleLogOut}
+        />
+        <Menu.Item
+          name={user.username}
+          active={activeItem === user.username}
+          onClick={handleItemClick}
+          as={Link}
+          to={`/user/${user.username}`}
         />
       </Menu.Menu>
     </Menu>
   ) : (
-    <Menu pointing secondary size="massive" color="teal">
+    <Menu pointing secondary size='massive' color='teal'>
       <Menu.Item
-        name='home'
-        active={activeItem === 'home'}
+        name='main'
+        active={activeItem === 'main'}
         onClick={handleItemClick}
         as={Link}
-        to="/"
+        to='/'
       />
       <Menu.Menu position='right'>
         <Menu.Item
@@ -42,14 +57,14 @@ function MenuBar() {
           active={activeItem === 'login'}
           onClick={handleItemClick}
           as={Link}
-          to="/login"
+          to='/login'
         />
         <Menu.Item
           name='register'
           active={activeItem === 'register'}
           onClick={handleItemClick}
           as={Link}
-          to="/register"
+          to='/register'
         />
       </Menu.Menu>
     </Menu>

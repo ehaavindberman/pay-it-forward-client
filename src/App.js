@@ -8,10 +8,13 @@ import { AuthProvider } from './context/auth';
 import AuthRoute from './util/AuthRoute';
 
 import MenuBar from './components/MenuBar';
+import Main from './pages/Main';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import SinglePost from './pages/SinglePost';
+import CreatePost from './components/CreatePost';
+import Stats from './pages/Stats'
 
 function App() {
   return (
@@ -19,10 +22,13 @@ function App() {
       <Router>
         <Container>
           <MenuBar/>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/' component={Main}/>
+          <Route exact path='/create' component={CreatePost}/>
+          <Route exact path='/user/:username' component={Home}/>
           <AuthRoute exact path='/login' component={Login}/>
           <AuthRoute exact path='/register' component={Register}/>
-          <Route exact path='/posts/:postId' component={SinglePost}/>
+          <Route exact path='/recs/:postId' component={SinglePost}/>
+          <Route exact path='/stats/:tag' component={Stats}/>
         </Container>
       </Router>
     </AuthProvider>

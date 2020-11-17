@@ -6,10 +6,31 @@
 }
 
 .form-container {
-  max-width: 400px;
+  /* max-width: 400px; */
   margin: auto;
+  padding: 10px;
+}
+
+.rec-input {
+  max-width: 150px;
+  margin-bottom: 20px;
 }
 
 .ui.teal.button:focus, .ui.teal.buttons .button.focus {
   background-color: #00b5ad;
+}
+
+.desc-input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.add-rec-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.create-post {
+  margin-bottom: 20px;
 }

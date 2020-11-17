@@ -4,19 +4,39 @@ export const FETCH_POSTS_QUERY = gql`
   {
     getPosts {
       id
-      body
       createdAt
       username
       likeCount
-      likes{
+      likes {
         username
       }
-      commentCount
-      comments{
+      recs {
+        tag
+        description
+        text
+        link
         id
+      }
+    }
+  }
+`;
+
+export const FETCH_POSTS_BY_USER_QUERY = gql`
+  query getPostsByUser($username: String!) {
+    getPostsByUser(username: $username) {
+      id
+      createdAt
+      username
+      likeCount
+      likes {
         username
-        createdAt
-        body
+      }
+      recs {
+        tag
+        description
+        text
+        link
+        id
       }
     }
   }

@@ -3,10 +3,11 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/client'
 import { Button, Confirm, Icon } from 'semantic-ui-react'
 
-import { FETCH_POSTS_QUERY } from '../util/graphql'
+import { FETCH_POSTS_QUERY, FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
 import MyPopup from '../util/MyPopup'
 
-function DeleteButton({ postId, commentId, callback }) {
+function DeleteButton({ postId, commentId, callback, type }) {
+
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const mutation = commentId ? DELETE_COMMENT_MUTATION : DELETE_POST_MUTATION;
@@ -15,12 +16,26 @@ function DeleteButton({ postId, commentId, callback }) {
     update(proxy) {
       setConfirmOpen(false);
       if (!commentId) {
-        const data = proxy.readQuery({
-          query: FETCH_POSTS_QUERY
-        });
-        proxy.writeQuery({ query: FETCH_POSTS_QUERY, data: {
-          getPosts: data.getPosts.filter(p => p.id !== postId),
-        }});
+        if (type === 'home') {
+          const data = proxy.readQuery({
+            query: FETCH_POSTS_BY_USER_QUERY
+          });
+          console.log(data);
+          proxy.writeQuery({ query: FETCH_POSTS_BY_USER_QUERY,
+            data: {
+              getPostsByUser: data.getPostsByUser.filter(p => p.id !== postId),
+            }
+          });
+        } else {
+          const data = proxy.readQuery({
+            query: FETCH_POSTS_QUERY
+          });
+          proxy.writeQuery({ query: FETCH_POSTS_QUERY,
+            data: {
+              getPosts: data.getPosts.filter(p => p.id !== postId),
+            }
+          });
+        }
       }
 
       if (callback) {
