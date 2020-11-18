@@ -41,3 +41,25 @@ export const FETCH_POSTS_BY_USER_QUERY = gql`
     }
   }
 `;
+
+
+export const FETCH_POST_BY_ID_QUERY = gql`
+  query($postId: ID!) {
+    getPost(postId: $postId) {
+      id
+      createdAt
+      username
+      likeCount
+      likes {
+        username
+      }
+      recs {
+        tag
+        description
+        text
+        link
+        id
+      }
+    }
+  }
+`;

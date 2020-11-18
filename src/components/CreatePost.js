@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react'
 import { Button, Divider, Form, Select, Transition } from 'semantic-ui-react'
-import { useMutation } from '@apollo/client'
+import { useMutation, useLazyQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 
 import { AuthContext } from '../context/auth'
 import RecoCard from '../components/RecoCard'
 import { tagOptions } from '../util/tags'
-import { FETCH_POSTS_QUERY } from '../util/graphql'
+import { FETCH_POSTS_QUERY, FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
 
 function CreatePost(props) {
   const { user, context } = useContext(AuthContext);
+
+  let showPostPreview = false;
 
   const [submittedRecs, setSubmittedRecs] = useState([]);
   const [form, setForm] = useState({reco: '', desc: '', tag: ''});
@@ -22,18 +24,12 @@ function CreatePost(props) {
     });
   };
 
-  const [createPost] = useMutation(CREATE_POST_MUTATION, {
-    update(proxy, result) {
-      const data = proxy.readQuery({
-        query: FETCH_POSTS_QUERY
-      });
-      proxy.writeQuery({
-        query: FETCH_POSTS_QUERY,
-        data});
-    }
-  });
+  const [getPostsQuery,{ loading, data: { getPosts } = {}}] = useLazyQuery(FETCH_POSTS_QUERY);
+
+
+  const [createPost] = useMutation(CREATE_POST_MUTATION);
   const [createReco] = useMutation(CREATE_RECO_MUTATION);
-  const [addReco, { error }] = useMutation(ADD_RECO_MUTATION);
+  const [addReco] = useMutation(ADD_RECO_MUTATION);
 
   function createAndAddReco(tag, postId, desc, text) {
     createReco({variables: {
@@ -54,6 +50,7 @@ function CreatePost(props) {
 
   function addRecoToPost(event) {
     event.preventDefault();
+    showPostPreview = true;
     let errs = {};
     if (form.reco.trim() === '') {
       errs.reco = 'Type in a recommendation';
@@ -82,8 +79,13 @@ function CreatePost(props) {
     }
   }
 
-  function removeRecoFromPost() {
-    console.log('delete');
+  function removeRecoFromPost(id) {
+    if (submittedRecs.length === 1) {
+      setSubmittedRecs([]);
+
+    } else {
+      setSubmittedRecs(submittedRecs.splice(id,1));
+    }
   }
 
   function submitPost() {
@@ -99,7 +101,8 @@ function CreatePost(props) {
         }
       },
       (err) => {console.log(err)}
-    )
+    ).then( ()=> getPostsQuery()
+    ).catch(console.error)
 
     setSubmittedRecs([]);
 
@@ -163,10 +166,7 @@ function CreatePost(props) {
         </div>
       )}
     </div>
-    <Transition.Group animation={'fade down'} duration={500}
-        >
-    {(form.reco !== '' || submittedRecs.length > 0) && (
-      <>
+    <Transition.Group animation={'fade down'} duration={500}>
       <Divider horizontal>New Post Preview</Divider>
       <RecoCard delFunc={removeRecoFromPost} del={true}
         post={{
@@ -185,8 +185,6 @@ function CreatePost(props) {
       >
         Post!
       </Button>
-      </>
-    )}
     </Transition.Group>
     </>
   )
@@ -240,14 +238,6 @@ const ADD_RECO_MUTATION = gql`
       }
       createdAt
       username
-    }
-  }
-`;
-
-const FETCH_RECO_QUERY = gql`
-  query($recoId: ID!) {
-    getReco(recoId: $recoId) {
-      id
     }
   }
 `;

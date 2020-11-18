@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 
 import { useForm } from '../util/hooks'
 
-function RecoInPost({rec: { reco, desc, tag }, del}, deleteFunction) {
+function RecoInPost({rec: { id, reco, desc, tag }, del, delFunc}) {
 
   const items = [
     {
@@ -14,15 +14,13 @@ function RecoInPost({rec: { reco, desc, tag }, del}, deleteFunction) {
       meta: tag,
     }
   ];
-  if (del) {
-    console.log(deleteFunction);
-  }
+
   return (
     <Card>
       <Card.Content>
         <Button.Group floated='right'>
           {del &&
-            <Button onClick={deleteFunction}>
+            <Button onClick={() => delFunc(id)}>
               <Icon name='delete'/>
             </Button>
           }

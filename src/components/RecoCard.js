@@ -11,8 +11,8 @@ import { tagIconOptions } from '../util/tags'
 
 function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, delType, delFunc, del}) {
 
-  const deleteFunction = () => {
-    delFunc();
+  const deleteFunction = (id) => {
+    delFunc(id);
   }
 
   const { user } = useContext(AuthContext);
@@ -42,9 +42,9 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
         <List>
           {recs.length > 0 && recs.map(rec => (
             <RecoInPost
-              deleteFunction={deleteFunction}
+              delFunc={delFunc}
               key={rec.id}
-              rec={{reco: rec.text, desc: rec.description}}
+              rec={{id: rec.id, reco: rec.text, desc: rec.description}}
               del={del}
             />
           ))}
@@ -65,7 +65,7 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
           <Icon name='trash' style={{ margin:0 }}/>
         </Button>
         : user && user.username === username
-        && <DeleteButton postId={id} username={username} type={delType} 
+        && <DeleteButton postId={id} username={username} type={delType}
       />}
       </Card.Content>
     </Card>
