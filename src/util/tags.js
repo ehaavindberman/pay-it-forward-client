@@ -1,6 +1,6 @@
 export const tagIconOptions = {
   'Mobile Games':'mobile alternate',
-  'Music': 'headphones',
+  'Songs/Musicians': 'headphones',
   'Books': 'book',
   'Movies': 'film',
   'Shows': 'play',
