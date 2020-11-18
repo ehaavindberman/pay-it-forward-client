@@ -7,7 +7,6 @@ import { AuthContext } from '../context/auth'
 import CreatePost from '../components/CreatePost'
 import RecoCard from '../components/RecoCard'
 import { FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
-// fetch posts by user here
 
 
 function Home(props) {

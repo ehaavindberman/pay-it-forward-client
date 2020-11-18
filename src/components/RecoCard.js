@@ -64,7 +64,9 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
         <Button as="div" color='red' floated='right'>
           <Icon name='trash' style={{ margin:0 }}/>
         </Button>
-        : user && user.username === username && <DeleteButton postId={id} username={username} type={delType} />}
+        : user && user.username === username
+        && <DeleteButton postId={id} username={username} type={delType} 
+      />}
       </Card.Content>
     </Card>
   )
