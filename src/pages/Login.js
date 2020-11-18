@@ -19,7 +19,7 @@ function Login(props) {
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(_, { data: { login: userData }}) {
       context.login(userData);
-      props.history.push('/');
+      window.location.pathname = '/';
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -54,7 +54,7 @@ function Login(props) {
           error={errors.password ? true : false}
           onChange={onChange}
         />
-        <Button type="submit" color='teal' primary>
+        <Button type="submit" color='teal'>
           Login
         </Button>
       </Form>
