@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { Divider, Grid, Image, Rail, Segment, Transition } from 'semantic-ui-react'
 import gql from 'graphql-tag'
@@ -15,9 +15,17 @@ function Home(props) {
 
   const userPageUsername = props.match.params.username;
 
-  const { loading, data: { getPostsByUser: posts} = {} } = useQuery(FETCH_POSTS_BY_USER_QUERY, {
-    variables: {username: userPageUsername}
-  });
+  const {
+    loading,
+    data: { getPostsByUser: posts} = {},
+    refetch } = useQuery(FETCH_POSTS_BY_USER_QUERY, {
+      variables: {username: userPageUsername}
+    }
+  );
+
+  function addPost() {
+    refetch();
+  }
 
   return (
     <Grid centered columns={2}>
@@ -26,7 +34,7 @@ function Home(props) {
     </Grid.Row>
       <Grid.Column>
         <Segment>
-          {user && user.username === userPageUsername && <CreatePost />}
+          {user && user.username === userPageUsername && <CreatePost addPostFunc={addPost}/>}
           <Divider horizontal>
             {user.username === userPageUsername ?  'Your' : userPageUsername+'\'s'} Posts
             </Divider>

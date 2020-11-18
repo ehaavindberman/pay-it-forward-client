@@ -8,9 +8,10 @@ import RecoCard from '../components/RecoCard'
 import { tagOptions } from '../util/tags'
 import { FETCH_POSTS_QUERY, FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
 
-function CreatePost(props) {
+function CreatePost({ addPostFunc }) {
   const { user, context } = useContext(AuthContext);
 
+  let createdPosts = 0;
   let showPostPreview = false;
 
   const [submittedRecs, setSubmittedRecs] = useState([]);
@@ -23,9 +24,6 @@ function CreatePost(props) {
       [e.target.name]: e.target.value
     });
   };
-
-  const [getPostsQuery,{ loading, data: { getPosts } = {}}] = useLazyQuery(FETCH_POSTS_QUERY);
-
 
   const [createPost] = useMutation(CREATE_POST_MUTATION);
   const [createReco] = useMutation(CREATE_RECO_MUTATION);
@@ -91,18 +89,21 @@ function CreatePost(props) {
   function submitPost() {
     createPost().then(
       (res) => {
+        setInterval(function(){addPostFunc();},300);
+
+
         for (let i=0; i < submittedRecs.length; i++) {
           createAndAddReco(
             form.tag,
             res.data.createPost.id,
             submittedRecs[i].description,
-             submittedRecs[i].text
-           )
+            submittedRecs[i].text
+          )
         }
+        return res;
       },
       (err) => {console.log(err)}
-    ).then( ()=> getPostsQuery()
-    ).catch(console.error)
+    )
 
     setSubmittedRecs([]);
 
@@ -166,7 +167,7 @@ function CreatePost(props) {
         </div>
       )}
     </div>
-    <Transition.Group animation={'fade down'} duration={500}>
+    <Transition.Group animation={'fade down'} duration={250}>
       <Divider horizontal>New Post Preview</Divider>
       <RecoCard delFunc={removeRecoFromPost} del={true}
         post={{

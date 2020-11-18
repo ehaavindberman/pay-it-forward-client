@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useQuery } from '@apollo/client'
+import { useQuery, useLazyQuery } from '@apollo/client'
 import { Button, Grid, Rail, Segment, Transition } from 'semantic-ui-react'
 
 import { AuthContext } from '../context/auth'
@@ -8,17 +8,24 @@ import CreatePost from '../components/CreatePost'
 import { FETCH_POSTS_QUERY } from '../util/graphql'
 
 
+
+
+
 function Main() {
 
   const { user, context } = useContext(AuthContext);
-  const { loading, data: { getPosts: posts} = {} } = useQuery(FETCH_POSTS_QUERY);
-
+  const { loading, data: { getPosts: posts} = {}, refetch} = useQuery(FETCH_POSTS_QUERY);
 
   const [createPost, setCreatePost] = useState(false);
 
   function showCreatePost() {
     setCreatePost(!createPost);
   }
+
+  function addPost(post) {
+    refetch();
+  }
+
 
   return (
     <Grid centered columns={2}>
@@ -31,8 +38,9 @@ function Main() {
           {loading? (
             <h1>Loading posts...</h1>
           ) : (
+
             <Transition.Group>
-              {createPost && <CreatePost className='create-post'/>}
+              {createPost && <CreatePost addPostFunc={addPost} className='create-post'/>}
               {posts && posts.map(post => (
                 <Grid.Column key={post.id} style={{ marginBottom: 20}}>
                   <RecoCard post={post} del={false}/>
