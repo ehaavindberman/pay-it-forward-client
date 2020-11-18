@@ -12,7 +12,6 @@ function CreatePost({ addPostFunc }) {
   const { user, context } = useContext(AuthContext);
 
   let createdPosts = 0;
-  let showPostPreview = false;
 
   const [submittedRecs, setSubmittedRecs] = useState([]);
   const [form, setForm] = useState({reco: '', desc: '', tag: ''});
@@ -48,7 +47,6 @@ function CreatePost({ addPostFunc }) {
 
   function addRecoToPost(event) {
     event.preventDefault();
-    showPostPreview = true;
     let errs = {};
     if (form.reco.trim() === '') {
       errs.reco = 'Type in a recommendation';
@@ -63,10 +61,11 @@ function CreatePost({ addPostFunc }) {
     setErrors(errs);
 
     if (Object.keys(errs).length === 0) {
+      let id = new Date().getTime();
       setSubmittedRecs([
         ...submittedRecs,
         {
-          id: submittedRecs.length,
+          id: id,
           text: form.reco,
           description: form.desc,
           tag: form.tag
@@ -78,12 +77,11 @@ function CreatePost({ addPostFunc }) {
   }
 
   function removeRecoFromPost(id) {
-    if (submittedRecs.length === 1) {
-      setSubmittedRecs([]);
+    setSubmittedRecs(submittedRecs.filter(r => r.id != id));
+  }
 
-    } else {
-      setSubmittedRecs(submittedRecs.splice(id,1));
-    }
+  function removeAllRecs() {
+    setSubmittedRecs([]);
   }
 
   function submitPost() {
@@ -169,7 +167,7 @@ function CreatePost({ addPostFunc }) {
     </div>
     <Transition.Group animation={'fade down'} duration={250}>
       <Divider horizontal>New Post Preview</Divider>
-      <RecoCard delFunc={removeRecoFromPost} del={true}
+      <RecoCard delFunc={removeRecoFromPost} trashFunc={removeAllRecs}
         post={{
           id: '0',
           createdAt: new Date(),

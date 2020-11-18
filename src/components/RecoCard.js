@@ -9,7 +9,7 @@ import DeleteButton from './DeleteButton'
 import RecoInPost from './RecoInPost'
 import { tagIconOptions } from '../util/tags'
 
-function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, delType, delFunc, del}) {
+function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, delType, delFunc, trashFunc}) {
 
   const deleteFunction = (id) => {
     delFunc(id);
@@ -24,7 +24,7 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
           src='https://react.semantic-ui.com/images/avatar/large/molly.png'
         />
         <Card.Header>{username}</Card.Header>
-        {del ?
+        {delFunc ?
           <Card.Meta>
             <p>{moment(createdAt).fromNow()}</p>
           </Card.Meta>
@@ -45,13 +45,12 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
               delFunc={delFunc}
               key={rec.id}
               rec={{id: rec.id, reco: rec.text, desc: rec.description}}
-              del={del}
             />
           ))}
         </List>
       </Card.Content>
       <Card.Content extra>
-      {del ?
+      {delFunc ?
         <Button as='div' labelPosition='right'>
           <Button color='teal' basic><Icon name='heart' /></Button>
           <Label basic color='teal' pointing='left'>{0}</Label>
@@ -60,8 +59,8 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
         <LikeButton user={user} post={{ id, likes, likeCount}}/>
       }
 
-      {del ?
-        <Button as="div" color='red' floated='right'>
+      {delFunc ?
+        <Button onClick={trashFunc} as="div" color='red' floated='right'>
           <Icon name='trash' style={{ margin:0 }}/>
         </Button>
         : user && user.username === username
