@@ -63,3 +63,15 @@ export const FETCH_POST_BY_ID_QUERY = gql`
     }
   }
 `;
+
+export const FETCH_RECS_BY_TAG_QUERY = gql`
+  query($tag: String!) {
+    getRecsByTag(tag: $tag) {
+      text
+      tag
+      id
+      createdAt
+      link 
+    }
+  }
+`;

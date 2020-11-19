@@ -7,6 +7,7 @@ import { AuthContext } from '../context/auth'
 import LikeButton from './LikeButton'
 import DeleteButton from './DeleteButton'
 import RecoInPost from './RecoInPost'
+import CategoryButton from './CategoryButton'
 import { tagIconOptions } from '../util/tags'
 
 function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, delType, delFunc, trashFunc}) {
@@ -34,11 +35,7 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
           </Card.Meta>
         }
 
-        {recs.length > 0  &&
-          <Label floated='left' as={Link} to={`/stats/${recs[0].tag}`}>
-            <Icon name={tagIconOptions[recs[0].tag]} />{recs[0].tag}
-          </Label>
-        }
+        {recs.length > 0  && <CategoryButton tag={recs[0].tag} />}
         <List>
           {recs.length > 0 && recs.map(rec => (
             <RecoInPost

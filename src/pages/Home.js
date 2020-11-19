@@ -6,6 +6,7 @@ import gql from 'graphql-tag'
 import { AuthContext } from '../context/auth'
 import CreatePost from '../components/CreatePost'
 import RecoCard from '../components/RecoCard'
+import RightRail from '../components/RightRail'
 import { FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
 
 
@@ -50,8 +51,10 @@ function Home(props) {
             </Transition.Group>
           )}
 
-          <Rail position='right' size='small'>
-            <Segment>Right Rail Content</Segment>
+          <Rail position='right'>
+            <Segment>
+              <RightRail />
+            </Segment>
           </Rail>
         </Segment>
       </Grid.Column>

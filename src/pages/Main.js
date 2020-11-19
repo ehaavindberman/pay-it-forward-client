@@ -5,6 +5,7 @@ import { Button, Grid, Rail, Segment, Transition } from 'semantic-ui-react'
 import { AuthContext } from '../context/auth'
 import RecoCard from '../components/RecoCard'
 import CreatePost from '../components/CreatePost'
+import RightRail from '../components/RightRail'
 import { FETCH_POSTS_QUERY } from '../util/graphql'
 
 
@@ -51,7 +52,9 @@ function Main() {
         </Grid.Row>
 
         <Rail position='right'>
-          Right Rail Content
+          <Segment>
+            <RightRail />
+          </Segment>
         </Rail>
 
         {user &&

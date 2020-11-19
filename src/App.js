@@ -15,6 +15,7 @@ import Register from './pages/Register';
 import SinglePost from './pages/SinglePost';
 import CreatePost from './components/CreatePost';
 import Stats from './pages/Stats'
+import About from './pages/About'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <AuthRoute exact path='/register' component={Register}/>
           <Route exact path='/recs/:postId' component={SinglePost}/>
           <Route exact path='/stats/:tag' component={Stats}/>
+          <Route exact path='/about' component={About}/>
         </Container>
       </Router>
     </AuthProvider>
