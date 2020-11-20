@@ -1,4 +1,4 @@
-import React} from 'react'
+import React from 'react'
 import { Button, Card, Icon } from 'semantic-ui-react'
 
 function RecoInPost({rec: { id, reco, desc, tag }, delFunc}) {
