@@ -19,13 +19,17 @@ function Enrollment(props) {
   }
 
   function addPost(post) {
-    setInterval(goToMain(),500);
+    goToMain();
   }
 
   function goToMain() {
     props.history.push('/');
+    window.scrollTo(0, 0);
   }
 
+  const styles = {
+    padding: 5
+  }
 
   return (
     <Grid centered columns={2}>
@@ -35,16 +39,16 @@ function Enrollment(props) {
       <Grid.Column>
         Welcome to Pay it Forward! A couple guidelines before you write your first recommendations:
         <ul>
-          <li>
-            Try to recommend things other might not know - recs that are local, up and coming, or from a cool cultural background are awesome!
+          <li style={styles}>
+            Try to <strong>recommend things others might not know</strong> - recs that are local, up and coming, or from a cool cultural background are awesome!
           </li>
-          <li>
-            Each post should be in a single category, you can write up to 5 recommendations per post, and you can make more posts from the Main page or your Home page
+          <li style={styles}>
+            Each post should be in a <strong>single category</strong>, you can write up to 5 recommendations per post, and you can make more posts from the Main page or your Home page
           </li>
-          <li>
-            Don't recommend yourself, ask your mom to get an account and do that for you
+          <li style={styles}>
+            <strong>Don't recommend yourself</strong>, ask your mom to get an account and do that for you
           </li>
-          <li>
+          <li style={styles}>
             We want to be a positive community, please don't write rude recommendations or descriptions
           </li>
         </ul>
