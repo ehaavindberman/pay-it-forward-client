@@ -8,7 +8,7 @@ import RecoCard from '../components/RecoCard'
 import { tagOptions } from '../util/tags'
 
 function CreatePost({ addPostFunc }) {
-  const { user, context } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [submittedRecs, setSubmittedRecs] = useState([]);
   const [form, setForm] = useState({reco: '', desc: '', tag: ''});
@@ -51,7 +51,7 @@ function CreatePost({ addPostFunc }) {
     if (form.tag.trim() === '') {
       errs.tag = 'Must choose a category for recommendations'
     }
-    if (submittedRecs.length > 0 && form.tag != submittedRecs[0].tag) {
+    if (submittedRecs.length > 0 && form.tag !== submittedRecs[0].tag) {
       errs.tag = 'Category should be the same for all recommendations in a post';
       errs.tag2 = `You chose the category ${submittedRecs[0].tag}, to change, delete all recs`;
     }
@@ -74,7 +74,7 @@ function CreatePost({ addPostFunc }) {
   }
 
   function removeRecoFromPost(id) {
-    setSubmittedRecs(submittedRecs.filter(r => r.id != id));
+    setSubmittedRecs(submittedRecs.filter(r => r.id !== id));
   }
 
   function removeAllRecs() {

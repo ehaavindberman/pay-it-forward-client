@@ -1,4 +1,4 @@
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis } from 'recharts';
 
 
 function TagStatChart({ data, width, height })  {

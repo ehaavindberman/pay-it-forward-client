@@ -10,8 +10,6 @@ import LikeButton from './LikeButton'
 import DeleteButton from './DeleteButton'
 import RecoInPost from './RecoInPost'
 import CategoryButton from './CategoryButton'
-import { tagIconOptions } from '../util/tags'
-import { FETCH_POSTS_QUERY } from '../util/graphql'
 
 function RecoCard({post: { id, createdAt, username, likes, likeCount, recs, image }, delType, delFunc, trashFunc}) {
 
@@ -23,8 +21,7 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs, imag
 
   const {
     loading,
-    data: { getUserByUsername: author } = {},
-    refetch } = useQuery(FETCH_USER_BY_USERNAME, {
+    data: { getUserByUsername: author } = {}} = useQuery(FETCH_USER_BY_USERNAME, {
       variables: {username: username}
     }
   );

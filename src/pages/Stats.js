@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { useQuery, useEffect, useState } from '@apollo/client'
-import { Divider, Grid, Image, Rail, Segment, Transition } from 'semantic-ui-react'
+import React from 'react'
+import { useQuery } from '@apollo/client'
+import { Grid, Rail, Segment, Transition } from 'semantic-ui-react'
 
 import TagStatChart from '../components/TagStatChart';
 import RightRail from '../components/RightRail';

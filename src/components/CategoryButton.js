@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Label, List } from 'semantic-ui-react';
+import { Icon, Label } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import { tagIconOptions } from '../util/tags';

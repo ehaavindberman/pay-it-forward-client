@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Grid, Segment, Icon } from 'semantic-ui-react'
 
 function About() {

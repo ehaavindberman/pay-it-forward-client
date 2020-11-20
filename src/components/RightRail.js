@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Icon, Header, Label, List, Sticky } from 'semantic-ui-react';
+import { Button, Header, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
-import { tagIconOptions, tagOptions } from '../util/tags';
+import { tagOptions } from '../util/tags';
 import CategoryButton from './CategoryButton';
 
 function RightRail() {

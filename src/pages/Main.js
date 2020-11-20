@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { Button, Grid, Rail, Segment, Sticky, Transition } from 'semantic-ui-react'
+import { Button, Grid, Rail, Segment, Transition } from 'semantic-ui-react'
 
 import { AuthContext } from '../context/auth'
 import RecoCard from '../components/RecoCard'
@@ -10,7 +10,7 @@ import { FETCH_POSTS_QUERY } from '../util/graphql'
 
 function Main() {
 
-  const { user, context } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { loading, data: { getPosts: posts} = {}, refetch} = useQuery(FETCH_POSTS_QUERY);
 
   const [createPost, setCreatePost] = useState(false);

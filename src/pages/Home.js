@@ -1,7 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useQuery } from '@apollo/client'
-import { Divider, Grid, Image, Rail, Segment, Transition } from 'semantic-ui-react'
-import gql from 'graphql-tag'
+import { Divider, Grid, Rail, Segment, Transition } from 'semantic-ui-react'
 
 import { AuthContext } from '../context/auth'
 import CreatePost from '../components/CreatePost'
