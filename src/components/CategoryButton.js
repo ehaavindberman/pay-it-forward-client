@@ -7,8 +7,8 @@ import { tagIconOptions } from '../util/tags';
 function CategoryButton({ tag }) {
 
   return (
-    <Label floated='left' as={Link} to={`/stats/${tag}`}>
-      <Icon name={tagIconOptions[tag]} />{tag}
+    <Label className='bg-color-tertiary' floated='left' as={Link} to={`/stats/${tag}`}>
+      <Icon  name={tagIconOptions[tag]} />{tag}
     </Label>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { useQuery, useLazyQuery } from '@apollo/client'
-import { Button, Grid, Rail, Segment, Transition } from 'semantic-ui-react'
+import { useQuery } from '@apollo/client'
+import { Button, Grid, Rail, Segment, Sticky, Transition } from 'semantic-ui-react'
 
 import { AuthContext } from '../context/auth'
 import RecoCard from '../components/RecoCard'
@@ -51,11 +51,13 @@ function Main() {
           )}
         </Grid.Row>
 
+
         <Rail position='right'>
-          <Segment>
-            <RightRail />
-          </Segment>
+            <Segment>
+              <RightRail />
+            </Segment>
         </Rail>
+
 
         {user &&
           <Rail position='left' onClick={showCreatePost}>

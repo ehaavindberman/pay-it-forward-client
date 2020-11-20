@@ -8,7 +8,7 @@ function MenuBar(props) {
   const { user, logout } = useContext(AuthContext);
 
   const pathname = window.location.pathname;
-  console.log(pathname);
+
   const path = pathname === '/' ? 'main' : pathname.substr(1);
   const [activeItem, setActiveItem] = useState(path);
 

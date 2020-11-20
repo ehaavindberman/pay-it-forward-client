@@ -21,7 +21,7 @@ function Register(props) {
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
     update(_, {data: { register: userData }}) {
       context.login(userData);
-      props.history.push('/');
+      props.history.push('/enrollment');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -74,7 +74,7 @@ function Register(props) {
           error={errors.confirmPassword ? true : false}
           onChange={onChange}
         />
-        <Button type="submit" primary>
+        <Button type="submit" color='teal'>
           Register
         </Button>
       </Form>

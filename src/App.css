@@ -42,3 +42,42 @@
 .stat-container {
   width: 600px;
 }
+
+.color-primary {
+  color: #00B5AD !important;
+}
+.color-primary:hover {
+  color: #0f968f !important;
+}
+
+.color-secondary {
+  color:#f9d56e !important;
+}
+
+.color-tertiary {
+  color: #f3ecc2 !important;
+}
+.color-white {
+  color: #fff !important;
+}
+
+.bg-color-primary {
+  background-color: #00B5AD !important;
+}
+
+.bg-color-secondary {
+  background-color:#f9d56e !important;
+}
+
+.bg-color-tertiary {
+  background-color: #f3ecc2 !important;
+}
+
+
+
+.centered-div {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+
+}

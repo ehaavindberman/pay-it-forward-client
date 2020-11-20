@@ -11,8 +11,6 @@ import { FETCH_POSTS_QUERY, FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
 function CreatePost({ addPostFunc }) {
   const { user, context } = useContext(AuthContext);
 
-  let createdPosts = 0;
-
   const [submittedRecs, setSubmittedRecs] = useState([]);
   const [form, setForm] = useState({reco: '', desc: '', tag: ''});
   const [errors, setErrors] = useState({});
