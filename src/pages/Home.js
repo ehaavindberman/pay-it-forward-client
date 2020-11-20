@@ -31,13 +31,14 @@ function Home(props) {
   return (
     <Grid centered columns={2}>
     <Grid.Row className="page-title">
-      <h1>{user.username === userPageUsername ?  'Your' : userPageUsername+'\'s'} Home Page</h1>
+      <h1>{(!user || user.username !== userPageUsername)
+        ?  userPageUsername+'\'s' : 'Your'} Home Page</h1>
     </Grid.Row>
       <Grid.Column>
         <Segment>
-          {user && user.username === userPageUsername && <CreatePost addPostFunc={addPost}/>}
+          {(user && user.username === userPageUsername) && <CreatePost addPostFunc={addPost}/>}
           <Divider horizontal>
-            {user.username === userPageUsername ?  'Your' : userPageUsername+'\'s'} Posts
+            {(user && user.username === userPageUsername) ?  'Your' : userPageUsername+'\'s'} Posts
             </Divider>
           {loading? (
             <h1>Loading posts...</h1>
