@@ -39,7 +39,7 @@ function Stats(props) {
             <Segment>
             <h3>Hello! Eric here.</h3>
               <p>
-                This stats page is in early alpha. As a former data anlyst, I have a particular appreciation for the visualization swe can do with dat and while currently we're only seeing the most popular reocmmendations, eventually I plan to include a personalized reocmmendation network, recommendation trends over time, and your friend's recommendations.
+                This stats page is in early alpha. As a former data analyst, I have a particular appreciation for the visualizations we can do with data and while currently we're only seeing the most popular recommendations, eventually I plan to include a personalized recommendation network, recommendation trends over time, and your friend's recommendations.
               </p>
               <p>
                 I am currently using Recharts for charting because I don't have time to dig into a more robust data vis library that is compatible with React (although Airbnb's Visx is pretty promising, I'm waiting a bit on it because it is so new).
