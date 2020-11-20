@@ -55,13 +55,13 @@ function About() {
             If you want to get in contact, feel free to send me an email at ehaavindberman@gmail.com and here are links to my LinkedIn, GitHub, and haavindberman.com, my personal website!
           </p>
           <div className="centered-div">
-            <a href='https://www.linkedin.com/in/eric-haavind-berman-617a735b/'>
+            <a href='https://www.linkedin.com/in/eric-haavind-berman-617a735b/' target="_blank">
               <Icon className='color-primary' size='huge' name='linkedin'/>
             </a>
-            <a href='https://github.com/ehaavindberman'>
+            <a href='https://github.com/ehaavindberman' target="_blank">
               <Icon className='color-primary' size='huge' name='github'/>
             </a>
-            <a href='http://www.haavindberman.com'>
+            <a href='http://www.haavindberman.com' target="_blank">
               <Icon  className='color-primary' size='huge' name='home'/>
             </a>
           </div>

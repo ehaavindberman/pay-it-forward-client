@@ -8,10 +8,6 @@ import CreatePost from '../components/CreatePost'
 import RightRail from '../components/RightRail'
 import { FETCH_POSTS_QUERY } from '../util/graphql'
 
-
-
-
-
 function Main() {
 
   const { user, context } = useContext(AuthContext);
@@ -26,7 +22,6 @@ function Main() {
   function addPost(post) {
     refetch();
   }
-
 
   return (
     <Grid centered columns={2}>

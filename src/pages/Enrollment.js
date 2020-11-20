@@ -1,30 +1,16 @@
-import React, { useContext, useState } from 'react'
-import { useQuery } from '@apollo/client'
-import { Button, Grid, Rail, Segment, Sticky, Transition } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Button, Grid, Transition } from 'semantic-ui-react'
 
-import { AuthContext } from '../context/auth'
-import RecoCard from '../components/RecoCard'
 import CreatePost from '../components/CreatePost'
-import { FETCH_POSTS_QUERY } from '../util/graphql'
-
 
 function Enrollment(props) {
 
-  const { user, context } = useContext(AuthContext);
+  const [posted, setPosted] = useState(false);
 
   const [createPost, setCreatePost] = useState(false);
 
-  function showCreatePost() {
-    setCreatePost(!createPost);
-  }
-
   function addPost(post) {
-    goToMain();
-  }
-
-  function goToMain() {
-    props.history.push('/');
-    window.scrollTo(0, 0);
+    setPosted(true);
   }
 
   const styles = {
@@ -53,7 +39,15 @@ function Enrollment(props) {
           </li>
         </ul>
         <Button color='teal' onClick={() => {setCreatePost(true)}}>I'm with you</Button>
-        {createPost && <CreatePost addPostFunc={addPost} />}
+        <Transition.Group>
+          {createPost && <CreatePost addPostFunc={addPost} />}
+          {posted && <h3>Congrats! You submitted your first post!</h3>}
+          {posted &&
+            <a href='/'>
+              <Button color='teal'>Click here to go to the main page</Button>
+            </a>
+          }
+        </Transition.Group>
       </Grid.Column>
     </Grid>
   )

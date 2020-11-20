@@ -1,7 +1,9 @@
-import React, { useContext } from 'react'
-import { Button, Card, Icon, Image, Label, List } from 'semantic-ui-react'
+import React, { useContext } from 'react';
+import { useQuery } from '@apollo/client'
+import { Button, Card, Icon, Image, Label, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import moment from 'moment'
+import moment from 'moment';
+import gql from 'graphql-tag';
 
 import { AuthContext } from '../context/auth'
 import LikeButton from './LikeButton'
@@ -9,8 +11,9 @@ import DeleteButton from './DeleteButton'
 import RecoInPost from './RecoInPost'
 import CategoryButton from './CategoryButton'
 import { tagIconOptions } from '../util/tags'
+import { FETCH_POSTS_QUERY } from '../util/graphql'
 
-function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, delType, delFunc, trashFunc}) {
+function RecoCard({post: { id, createdAt, username, likes, likeCount, recs, image }, delType, delFunc, trashFunc}) {
 
   const deleteFunction = (id) => {
     delFunc(id);
@@ -18,12 +21,25 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
 
   const { user } = useContext(AuthContext);
 
+  const {
+    loading,
+    data: { getUserByUsername: author } = {},
+    refetch } = useQuery(FETCH_USER_BY_USERNAME, {
+      variables: {username: username}
+    }
+  );
+
+
   return (
     <Card fluid>
       <Card.Content>
+      {loading ?
         <Image floated='left' size='mini' as={Link} to={`/user/${username}`}
-          src='https://react.semantic-ui.com/images/avatar/large/molly.png'
-        />
+        src={`https://react.semantic-ui.com/images/avatar/large/ade.jpg`} />
+        :
+        <Image floated='left' size='mini' as={Link} to={`/user/${username}`}
+        src={`https://react.semantic-ui.com/images/avatar/large/${author.image}`} />
+      }
         <Card.Header>{username}</Card.Header>
         {delFunc ?
           <Card.Meta>
@@ -67,5 +83,15 @@ function RecoCard({post: { id, createdAt, username, likes, likeCount, recs }, de
     </Card>
   )
 }
+
+const FETCH_USER_BY_USERNAME = gql`
+  query getUserByUsername($username: String!) {
+    getUserByUsername(username: $username) {
+      id
+      username
+      image
+    }
+  }
+`;
 
 export default RecoCard;

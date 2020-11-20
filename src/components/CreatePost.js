@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { Button, Divider, Form, Select, Transition } from 'semantic-ui-react'
-import { useMutation, useLazyQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import gql from 'graphql-tag'
 
 import { AuthContext } from '../context/auth'
 import RecoCard from '../components/RecoCard'
 import { tagOptions } from '../util/tags'
-import { FETCH_POSTS_QUERY, FETCH_POSTS_BY_USER_QUERY } from '../util/graphql'
 
 function CreatePost({ addPostFunc }) {
   const { user, context } = useContext(AuthContext);
@@ -179,6 +178,7 @@ function CreatePost({ addPostFunc }) {
         onClick={submitPost}
         className={submittedRecs.length > 0 ?  'active' : 'disabled'}
         color='teal'
+        style={{marginBottom: 20}}
       >
         Post!
       </Button>
