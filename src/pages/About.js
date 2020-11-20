@@ -28,27 +28,27 @@ function About() {
           <h3>Next steps</h3>
           <p>
             I have documented many of my next steps in GitHub issues but the largest ones concern:
-            <ul>
-              <li>
-                allowing users more control of their data (a place to delete your profile for instance)
-              </li>
-              <li>
-                design in general - since I'm learning semantic UI many of the pages are not very responsive
-              </li>
-              <li>
-                working on the data science side to see who should get which recommendations
-              </li>
-              <li>
-                polishing the recommendation submission backend for better structure
-              </li>
-              <li>
-                ways of interacting with other users outside of liking posts
-              </li>
-              <li>
-                and much more...
-              </li>
-            </ul>
           </p>
+          <ul>
+            <li>
+              allowing users more control of their data (a place to delete your profile for instance)
+            </li>
+            <li>
+              design in general - since I'm learning semantic UI many of the pages are not very responsive
+            </li>
+            <li>
+              working on the data science side to see who should get which recommendations
+            </li>
+            <li>
+              polishing the recommendation submission backend for better structure
+            </li>
+            <li>
+              ways of interacting with other users outside of liking posts
+            </li>
+            <li>
+              and much more...
+            </li>
+          </ul>
 
           <h3>Contact info</h3>
           <p>
