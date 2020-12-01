@@ -1,6 +1,6 @@
 export const tagIconOptions = {
   'Mobile Games':'mobile alternate',
-  'Songs&Musicians': 'headphones',
+  'Music': 'headphones',
   'Books': 'book',
   'Movies': 'film',
   'Shows': 'play',
@@ -13,7 +13,7 @@ export const tagIconOptions = {
 
 export const tagOptions = [
   { key: 'mg', text: 'Mobile Games', value: 'Mobile Games' },
-  { key: 's', text: 'Music', value: 'Songs&Musicians' },
+  { key: 's', text: 'Music', value: 'Music' },
   { key: 'b', text: 'Books', value: 'Books' },
   { key: 'm', text: 'Movies', value: 'Movies' },
   { key: 'sh', text: 'Shows', value: 'Shows' },
