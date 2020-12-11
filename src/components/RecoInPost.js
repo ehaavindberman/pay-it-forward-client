@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card, Icon } from 'semantic-ui-react'
 
 function RecoInPost({rec: { id, reco, desc, tag }, delFunc}) {
 
-  const items = [
-    {
-      header: reco,
-      description: desc,
-      meta: tag,
-    }
-  ];
+  const [showMore, setShowMore] = useState(false);
+  const smallDesc = desc.substring(0,100);
+
+  function toggleShowMore() {
+    setShowMore(!showMore);
+  }
 
   return (
     <Card fluid>
@@ -23,7 +22,12 @@ function RecoInPost({rec: { id, reco, desc, tag }, delFunc}) {
         </Button.Group>
         <Card.Header content={reco} />
         <Card.Meta content={tag} />
-        <Card.Description content={desc} />
+        <Card.Description>
+          {showMore? desc : smallDesc}
+          {desc.length > 100 &&
+            <a onClick={toggleShowMore}>{showMore? " show less":"... show more"}</a>
+          }
+        </Card.Description>
       </Card.Content>
     </Card>
   )
