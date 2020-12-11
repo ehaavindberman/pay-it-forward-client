@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useQuery } from '@apollo/client'
-import { Button, Grid, Rail, Segment, Transition } from 'semantic-ui-react'
+import { Button, Grid, Rail, Segment, Sticky, Transition } from 'semantic-ui-react'
 
 import { AuthContext } from '../context/auth'
 import RecoCard from '../components/RecoCard'
@@ -46,6 +46,7 @@ function Main() {
           )}
 
           <Rail className="mobile hidden" position='right'>
+            <div className="right-rail">
               <Segment>
                 {user &&
                   <Button color='teal' onClick={showCreatePost}>
@@ -54,6 +55,7 @@ function Main() {
                 }
                 <RightRail />
               </Segment>
+            </div>
           </Rail>
 
         </Grid.Column>
