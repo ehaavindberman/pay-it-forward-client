@@ -12,7 +12,7 @@ function RecoInPost({rec: { id, reco, desc, tag }, delFunc}) {
   ];
 
   return (
-    <Card>
+    <Card fluid>
       <Card.Content>
         <Button.Group floated='right'>
           {delFunc &&

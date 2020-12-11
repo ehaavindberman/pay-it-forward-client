@@ -24,13 +24,13 @@ function Main() {
   }
 
   return (
-    <Grid centered columns={2}>
+    <Grid>
       <Grid.Row className="page-title">
         <h1>Recent Posts</h1>
       </Grid.Row>
-      <Grid.Column>
+      <Grid.Row>
 
-        <Grid.Row>
+        <Grid.Column computer={11} mobile={16}>
           {loading? (
             <h1>Loading posts...</h1>
           ) : (
@@ -38,28 +38,27 @@ function Main() {
             <Transition.Group>
               {createPost && <CreatePost addPostFunc={addPost} className='create-post'/>}
               {posts && posts.map(post => (
-                <Grid.Column key={post.id} style={{ marginBottom: 20}}>
+                <Grid.Column key={post.id} style={{ marginBottom: 20, flexGrow:1}}>
                   <RecoCard post={post} del={false}/>
                 </Grid.Column>
               ))}
             </Transition.Group>
           )}
-        </Grid.Row>
 
-
-        <Rail position='right'>
-            <Segment>
-              <RightRail />
-            </Segment>
-        </Rail>
-
-
-        {user &&
-          <Rail position='left' onClick={showCreatePost}>
-            <Button color='teal'>Write some recommendations</Button>
+          <Rail only="computer" className="mobile hidden" position='right'>
+              <Segment>
+                {user &&
+                  <Button color='teal' onClick={showCreatePost}>
+                    Write some recommendations
+                  </Button>
+                }
+                <RightRail />
+              </Segment>
           </Rail>
-        }
-      </Grid.Column>
+
+        </Grid.Column>
+
+      </Grid.Row>
     </Grid>
   )
 }
