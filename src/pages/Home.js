@@ -54,9 +54,11 @@ function Home(props) {
           </Segment>
 
           <Rail className="mobile hidden" position='right'>
-            <Segment>
-              <RightRail />
-            </Segment>
+            <div className="right-rail">
+              <Segment>
+                <RightRail />
+              </Segment>
+            </div>
           </Rail>
 
         </Grid.Column>
