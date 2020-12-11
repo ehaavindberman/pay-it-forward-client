@@ -45,7 +45,7 @@ function Main() {
             </Transition.Group>
           )}
 
-          <Rail only="computer" className="mobile hidden" position='right'>
+          <Rail className="mobile hidden" position='right'>
               <Segment>
                 {user &&
                   <Button color='teal' onClick={showCreatePost}>

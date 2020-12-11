@@ -28,12 +28,13 @@ function Home(props) {
   }
 
   return (
-    <Grid centered columns={2}>
+    <Grid>
     <Grid.Row className="page-title">
       <h1>{(!user || user.username !== userPageUsername)
         ?  userPageUsername+'\'s' : 'Your'} Home Page</h1>
     </Grid.Row>
-      <Grid.Column>
+    <Grid.Row>
+      <Grid.Column computer={11} mobile={16}>
         <Segment>
           {(user && user.username === userPageUsername) && <CreatePost addPostFunc={addPost}/>}
           <Divider horizontal>
@@ -50,14 +51,16 @@ function Home(props) {
               ))}
             </Transition.Group>
           )}
+          </Segment>
 
-          <Rail position='right'>
+          <Rail className="mobile hidden" position='right'>
             <Segment>
               <RightRail />
             </Segment>
           </Rail>
-        </Segment>
-      </Grid.Column>
+
+        </Grid.Column>
+      </Grid.Row>
     </Grid>
   )
 }
